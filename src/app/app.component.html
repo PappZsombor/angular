@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h1>Repülők Listája</h1>
+  <button routerLink="/add-plane" class="btn btn-success mb-3">Új repülő hozzáadása</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Név</th>
+        <th>Gyártó</th>
+        <th>Kapacitás</th>
+        <th>Akciók</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plane of planes">
+        <td>{{ plane.id }}</td>
+        <td>{{ plane.name }}</td>
+        <td>{{ plane.manufacturer }}</td>
+        <td>{{ plane.capacity }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deletePlane(plane.id)">Törlés</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

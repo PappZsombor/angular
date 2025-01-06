@@ -1,0 +1,7 @@
+{
+    "planes": [
+      { "id": 1, "name": "Boeing 747", "manufacturer": "Boeing", "capacity": 660 },
+      { "id": 2, "name": "Airbus A320", "manufacturer": "Airbus", "capacity": 180 }
+    ]
+  }
+  
