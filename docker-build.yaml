@@ -1,0 +1,34 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Docker Login
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Angular Docker Image
+      run: |
+        docker build -t myusername/angular-app .
+        docker tag myusername/angular-app:latest myusername/angular-app:$GITHUB_SHA
+        docker push myusername/angular-app:latest
+        docker push myusername/angular-app:$GITHUB_SHA
+
+    - name: Build and Push JSON-server Docker Image
+      run: |
+        docker build -t myusername/json-server ./json-server
+        docker tag myusername/json-server:latest myusername/json-server:$GITHUB_SHA
+        docker push myusername/json-server:latest
+        docker push myusername/json-server:$GITHUB_SHA
